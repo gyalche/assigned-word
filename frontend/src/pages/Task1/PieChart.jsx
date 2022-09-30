@@ -63,7 +63,6 @@ const Chart = () => {
                   'rgb(156,0,60)',
                 ],
                 borderWidth: 1,
-                label: '# no of orders',
               },
             ],
             labels: label,
