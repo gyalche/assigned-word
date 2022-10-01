@@ -11,13 +11,12 @@ const Map = () => {
     height: window.innerHeight,
   });
 
-  const [showPopup, togglePopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const maptoken = process.env.MAP_TOKEN;
   return (
     <div>
       <ReactMapGL
-        mapboxApiAccessToken={
-          'pk.eyJ1IjoiYW5rdXIyMCIsImEiOiJja2tiOW4wNGIwNDh5MnBsY3EzeDNmcTV4In0.d4LelcSFDElA3BctgWvs1A'
-        }
+        mapboxApiAccessToken={maptoken}
         {...viewport}
         onViewportChange={(viewport) => setViewport(viewport)}>
         {showPopup && (
@@ -25,7 +24,7 @@ const Map = () => {
             latitude={viewport.latitude}
             longitude={viewport.longitude}
             closeButton={true}
-            onClose={() => togglePopup(false)}
+            onClose={() => setShowPopup(false)}
             anchor='top-right'>
             <div>Popup up marker</div>
           </Popup>
@@ -36,7 +35,7 @@ const Map = () => {
           offsetLeft={-20}
           offsetTop={-30}>
           <img
-            onClick={() => togglePopup(true)}
+            onClick={() => setShowPopup(true)}
             src={icons}
             alt='marker'
             style={{ height: 50, width: 50 }}
